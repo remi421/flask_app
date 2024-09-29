@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel='shortcut icon' href="https://findicons.com/files/icons/2804/plex/512/python.png"/>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' href="https://findicons.com/files/icons/2804/plex/512/python.png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML"></script>
+    
+    
+</head>
+
+
+<h1>{{pays}}</h1>
+    
+<div class="container mt-4">
+    <h2>Stats descriptives</h2>
+    <br>
+    <!-- Nav pills -->
+    <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <button id="tabStatsButton" class="nav-link active" onclick="showContent('tabStats')">Tableau des statistiques descriptives</button>
+        </li>
+        <li class="nav-item">
+          <button id="histoButton" class="nav-link histo-button" onclick="showContent('histo', '{{ nom_fichier_histogramme }}', '{{ url_histogramme }}')">Histogramme</button>
+        </li>
+        <li class="nav-item">
+          <button id="grapheButton" class="nav-link graphe-button" onclick="showContent('graphe', '{{ url_graphe }}')">Graphe</button>
+        </li>
+        <li class="nav-item">
+            <button id="modeleButton" class="nav-link modele-button" onclick="showContent('modele', '{{ url_modele }}','{{ nom_modele }}')">Modèle</button>
+        </li>
+      </ul>
+
+<div class="content" id="tabStats" style="display: block;">
+    <h3 class="fontsofia">Tableau des statistiques descriptives pour {{ nom_colonne }}</h3>
+    <br>
+    
+    <table class="table">
+        <thead style="background-color: #32a1ce;color: black; font-size: 17px;">
+            <tr>
+                <th scope="col">Statistiques</th>
+                <th scope="col">Formules</th>
+                <th scope="col">Valeurs empiriques</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td>nombre d'observations</td>
+                <td class="text-center">n</td>
+                <td class="text-center">{{ donnees_pays.shape[0] }}</td>
+            </tr>
+        
+            <tr>
+                <td>minimum</td>
+                <td class="text-center">$$\displaystyle min(x_{1}, \ldots , x_{n}) $$</td>
+                <td class="text-center">{{ min }}</td>
+            </tr>
+        
+            <tr>
+                <td>maximum</td>
+                <td class="text-center">$$\displaystyle max(x_{1}, \ldots , x_{n}) $$</td>
+                <td class="text-center">{{ max }}</td>
+            </tr>
+        
+            <tr>
+                <td>moyenne empirique</td>
+                <td class="text-center">$$\displaystyle m_{1}=\overline{x}_{n}=  \frac{1}{n} \sum\limits_{i=1}^{n} x_{i}$$</td>
+                <td class="text-center">{{ moy }}</td>
+            </tr>
+        
+            <tr>
+                <td>variance empirique</td>
+                <td class="text-center">$$\displaystyle  \mu_{2}=  \frac{1}{n} \sum\limits_{i=1}^{n} \big(x_{i}-\overline{x}_{n}\big)^{2}$$</td>
+                <td class="text-center">{{ var }}</td>
+            </tr>
+        
+            <tr>
+                <td>Asymétrie (skewness)</td>
+                <td class="text-center"> $$\displaystyle  \gamma_{1}=\frac{\mu_{3}}{\mu_{2}^{3/2}}$$</td>
+                <td class="text-center">{{ skew }}</td>
+            </tr>
+        
+            <tr>
+                <td> Aplatissement (kurtosis)</td>
+                <td class="text-center"> $$\displaystyle  \gamma_{2}=\frac{\mu_{4}}{\mu_{2}^{2}}-3$$</td>
+                <td class="text-center">{{ kurt }}</td>
+            </tr>
+        </tbody>
+        
+    </table>
+    
+</div>
+
+<div class="content" id="histo" style="display: none;">
+    <h3 class="fontsofia">Histogramme des données</h3>
+    <img id="histogrammeImage" alt="Histogramme des données">
+</div>
+
+
+<div class="content" id="graphe" style="display: none;">
+    <h3 class="fontsofia">Graphe</h3>
+    <img id="grapheImage" alt="Graphe">
+</div>
+
+<div class="content" id="modele" style="display: none;">
+    <h3 class="fontsofia">Modèle</h3>
+    <img id="modeleImage" alt="Modele">
+</div>
+  
+  <script>
+        var nom_fichier_histogramme = '{{ nom_fichier_histogramme }}';
+        var nom_graphe = '{{ nom_graphe }}';
+        var nom_modele = '{{ nom_modele }}';
+        // Code JavaScript pour afficher l'histogramme correspondant au nom de colonne sélectionné
+        function afficherHistogramme(urlHistogramme) {
+            var image = document.getElementById('histogrammeImage');
+            /*image.src = "/static/img/" + urlHistogramme;*/
+            image.src = "data:image/png;base64,{{ histo_html }}"
+        }
+
+        function afficherGraphe(urlGraphe) {
+            var image = document.getElementById('grapheImage');
+            image.src = "data:image/png;base64,{{ graphe_html }}"
+        }
+
+        function afficherModele(urlModele) {
+            var image = document.getElementById('modeleImage');
+            image.src = "data:image/png;base64,{{ modele_html }}"
+        }
+
+        function showContent(contentId) {
+        var contents = document.getElementsByClassName('content');
+        for (var i = 0; i < contents.length; i++) {
+            if (contents[i].id === contentId) {
+            contents[i].style.display = 'block';
+            } else {
+            contents[i].style.display = 'none';
+            }
+        }
+
+          // Ajoute la classe "active" au bouton sélectionné
+        var buttons = document.getElementsByTagName('button');
+        for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].id === contentId + 'Button') {
+            buttons[i].classList.add('active');
+            } else {
+            buttons[i].classList.remove('active');
+            }
+        }
+
+        if (contentId === 'histo') {
+            afficherHistogramme(nom_fichier_histogramme);
+        }
+        if (contentId === 'graphe') {
+            afficherGraphe(nom_graphe);
+        }
+        if (contentId === 'modele') {
+            afficherModele(nom_modele);
+        }
+        }
+
+
+  </script>
+  
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-15'>
+<link rel='shortcut icon' href='https://icon-library.com/images/pi-icon/pi-icon-29.jpg'/>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<style>
+body {
+    scroll-behavior: auto;
+}
+
+.container {
+    display: flex;
+}
+
+.left-column {
+    width: 400px;
+    padding-right: 20px;
+}
+
+.right-column {
+    flex-grow: 1;
+}
+</style>
+<title>Statistiques inf&eacute;rentielles</title>
+</head>
+
+<body>
+  <h1>Emissions de CO2</h1>
+  <div class="container">
+    <div class="left-column">
+        <div class="link-list">
+            {% for ligne in dataframe %}
+                {% if ligne == 'Annee' %}
+                {% else %}
+                  <a href="{{ url_for('statsDesc', nom_lien=ligne) }}" >{{ ligne }}</a><br><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="right-column">
+        <div id="pageContent">
+            <!-- Le contenu de page_ouverture.html sera chargé ici -->
+            {% include 'page_ouverture.html' %}
+        </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+/* Ajout d'une police de caractères personnalisée */
+body {
+  font-family: "Arial", sans-serif;
+}
+
+/* Ajout d'un espacement vertical entre les liens */
+.link-list a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #32a1ce;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Modification de la couleur de fond des liens au survol */
+.link-list a:hover {
+  background-color: #1d809f;
+}
+
+/* Ajout d'une ombre légère aux tableaux */
+.table {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustement de la taille de la police des tableaux */
+.table {
+  font-size: 16px;
+}
+
+/* Ajout d'un fond de couleur légèrement différent pour les lignes de tableau en survol */
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+/* Ajustement de la largeur des conteneurs */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Utilisation d'une bordure verticale pour séparer les liens et les tableaux */
+.verticale {
+  border-left: 4px solid #32a1ce;
+  padding-left: 10px;
+}
+
+/* Ajustement de la largeur des tableaux */
+.table-container {
+  flex-basis: 70%;
+  overflow-x: auto;
+}
+
+/* Ajout d'une marge inférieure aux liens de la liste */
+.link-list a:last-child {
+  margin-bottom: 0;
+}
+
+/* Mise en évidence de l'onglet actif */
+.nav-link.active {
+  background-color: #1d809f;
+  color: #fff;
+}
+
+/* Ajout d'un style au titre principal */
+h1 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #32a1ce;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Style pour les boutons dans la section des statistiques descriptives */
+.content button {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 12px 24px;
+  background-color: #32a1ce;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.content button:hover {
+  background-color: #1d809f;
+}
+
+/* Style pour les sections des statistiques descriptives */
+.content .fontsofia {
+  font-family: "Sofia", Arial, sans-serif;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #32a1ce;
+}
+
+.content table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.content table th {
+  background-color: #32a1ce;
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  text-align: left;
+}
+
+.content table td {
+  padding: 12px;
+}
+
+/* Style pour la section du graphique à barres */
+.content .bargraph-container {
+  margin-top: 30px;
+}
+
+.content .bargraph-label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #32a1ce;
+}
+
+.content .bargraph {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.content .bargraph-bar {
+  height: 100%;
+  background-color: #32a1ce;
+  border-radius: 4px;
+}
+
+/* Ajout d'un effet de transition pour tous les éléments avec une classe "transition" */
+.transition {
+  transition: all 0.3s ease;
+}
+
+/* Ajout d'un effet de survol d'image */
+.image-container:hover img {
+  transform: scale(1.1);
+}
+
+/* Ajout d'un effet de transition pour les liens dans la section du pied de page */
+.footer a {
+  transition: color 0.3s ease;
+}
+
+/* Modification de la couleur des liens au survol dans la section du pied de page */
+.footer a:hover {
+  color: #32a1ce;
+}
+
+/* Ajout d'un effet d'ombre légère sur les cartes */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modification de la couleur de fond des boutons de pagination */
+.pagination .page-link {
+  background-color: #32a1ce;
+  border-color: #32a1ce;
+}
+
+/* Modification de la couleur de fond des boutons de pagination au survol */
+.pagination .page-link:hover {
+  background-color: #1d809f;
+  border-color: #1d809f;
+}
+
+/* Modification de la couleur du texte actif des boutons de pagination */
+.pagination .page-item.active .page-link {
+  background-color: #1d809f;
+  border-color: #1d809f;
+}
+
+/* Ajout d'une animation de rotation aux icônes */
+.icon-container {
+  transition: transform 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: rotate(90deg);
+}
+
+/* Ajout du style pour la section de la page d'ouverture */
+.page-opening {
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  font-family: "Audiowide", sans-serif;
+}
+
+.page-opening h1 {
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.page-opening h3 {
+  color: blue;
+  font-weight: bold;
+}
+
+.page-opening a {
+  text-decoration: none;
+  color: white;
+}
+
+.page-opening a:hover {
+  text-decoration: underline;
+}
+
+.page-opening p {
+  font-family: cursive;
+  font-size: 15pt;
+  margin-bottom: 20px;
+}
+
+.page-opening p.red-heading {
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.page-opening p:last-child {
+  margin-bottom: 0;
+}
